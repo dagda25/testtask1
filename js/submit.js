@@ -45,7 +45,7 @@
     if (submit.disabled) {
       var invalidFieldsText = document.querySelector('.submit p');
       invalidFieldsText.innerHTML = 'Осталось заполнить:<br>';
-      enabledFields.forEach(function (item, i) {
+      enabledFields.forEach(function (item) {
         if (item.classList.contains('invalid')) {
           if (item.id !== 'card-2' && item.id !== 'card-3' && item.id !== 'card-4' && item.id !== 'card-full') {
             var invalidLabel = document.createElement('label');
@@ -85,7 +85,7 @@
       var unindexedArray = $form.serializeArray();
       var indexedArray = {};
 
-      $.map(unindexedArray, function (n, i) {
+      $.map(unindexedArray, function (n) {
         indexedArray[n['name']] = n['value'];
       });
 

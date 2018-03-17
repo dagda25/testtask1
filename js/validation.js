@@ -82,7 +82,7 @@
     hideTooltips();
   });
 
-  phonePanel.addEventListener('blur', function (evt) {
+  phonePanel.addEventListener('blur', function () {
     hideTooltips();
 
     if (phonePanel.value === '') {
@@ -102,7 +102,7 @@
   });
 
   for (var i = 0; i < 3; i++) {
-    (function (i) {
+    (function (x) {
       cardFields[i].addEventListener('keyup', function (evt) {
         if (evt.target.value.length === 4) {
           cardFields[i + 1].focus();
@@ -111,8 +111,8 @@
     })(i);
   }
 
-  for (var i = 1; i < 4; i++) {
-    (function (i) {
+  for (i = 1; i < 4; i++) {
+    (function (x) {
       cardFields[i].addEventListener('keydown', function (evt) {
         if (evt.keyCode === 8 && cardFields[i].value.length === 0) {
           evt.preventDefault();
@@ -123,10 +123,10 @@
     })(i);
   }
 
-  cardPanel.addEventListener('keyup', function (evt) {
+  cardPanel.addEventListener('keyup', function () {
     cardFieldFull.value = '';
 
-    for (var i = 0; i <= 3; i++) {
+    for (i = 0; i <= 3; i++) {
       if (cardFields[i].value.length < 4) {
         break;
       } else {
@@ -136,12 +136,12 @@
 
     if (cardFieldFull.value.length === 16) {
       if (checkCard(cardFieldFull.value)) {
-        for (var i = 0; i <= 3; i++) {
+        for (i = 0; i <= 3; i++) {
           cardFields[i].classList.remove('invalid');
         }
         cardFieldFull.classList.remove('invalid');
       } else {
-        for (var i = 0; i <= 3; i++) {
+        for (i = 0; i <= 3; i++) {
           if (!cardFields[i].classList.contains('invalid')) {
             cardFields[i].classList.add('invalid');
           }
@@ -151,7 +151,7 @@
         }
       }
     } else {
-      for (var i = 0; i <= 3; i++) {
+      for (i = 0; i <= 3; i++) {
         if (!cardFields[i].classList.contains('invalid')) {
           cardFields[i].classList.add('invalid');
         }
@@ -172,9 +172,9 @@
     }
   });
 
-  for (var i = 0; i <= 3; i++) {
-    (function (i) {
-      cardFields[i].addEventListener('focus', function (evt) {
+  for (i = 0; i <= 3; i++) {
+    (function (x) {
+      cardFields[i].addEventListener('focus', function () {
         hideTooltips();
       });
     })(i);
@@ -186,7 +186,7 @@
     }
 
     var arr = [];
-    for (var i = 0; i < cardNumber.length; i++) {
+    for (i = 0; i < cardNumber.length; i++) {
       if (i % 2 === 0) {
         var m = parseInt(cardNumber[i], 10) * 2;
         if (m > 9) {
