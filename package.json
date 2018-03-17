@@ -1,0 +1,24 @@
+{
+  "name": "testtask1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "testtask",
+  "author": "Виталий  Крашенинников",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dagda25/testtask1.git"
+  },
+
+  "devDependencies": {
+    "eslint": "4.2.0",
+    "eslint-config-htmlacademy": "0.3.x"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "test": "eslint js/"
+  },
+  "engines": {
+    "node": "^6.10"
+  }
+}
