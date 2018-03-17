@@ -8,10 +8,9 @@
     "type": "git",
     "url": "git@github.com:dagda25/testtask1.git"
   },
-
   "devDependencies": {
-    "eslint": "4.2.0",
-    "eslint-config-htmlacademy": "0.3.x"
+    "eslint": "^4.2.0",
+    "eslint-config-htmlacademy": "^0.3.2"
   },
   "license": "MIT",
   "dependencies": {},

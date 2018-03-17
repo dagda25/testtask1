@@ -1,21 +1,21 @@
-"use strict";
+'use strict';
 
 (function () {
-  var timeSlider = document.querySelector(".time-slider-handle");
-  var timeFrom = document.querySelector("input#time-from");
-  var timeTo = document.querySelector("input#time-to");
+  var timeSlider = document.querySelector('.time-slider-handle');
+  var timeFrom = document.querySelector('input#time-from');
+  var timeTo = document.querySelector('input#time-to');
   var sliderStyle = getComputedStyle(timeSlider);
   var inputStyleFirst = getComputedStyle(timeFrom);
   var inputWidth = parseInt(inputStyleFirst.width, 10) + parseInt(inputStyleFirst.paddingLeft, 10) + parseInt(inputStyleFirst.paddingRight, 10) + parseInt(inputStyleFirst.borderLeftWidth, 10) + parseInt(inputStyleFirst.borderRightWidth, 10);
   var sliderCoordinate = 0;
 
-  timeFrom.value = "08:00";
+  timeFrom.value = '08:00';
 
-  timeSlider.addEventListener("mousedown", function (evt) {
+  timeSlider.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     var startCoordinate = evt.clientX;
-    function onMouseMove (moveEvt) {
+    function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
 
       var shift = startCoordinate - moveEvt.clientX;
@@ -35,24 +35,24 @@
       var hoursTo = getTimeTo(hoursFrom);
 
       if (hoursFrom < 10) {
-        hoursFrom = "0" + hoursFrom;
+        hoursFrom = '0' + hoursFrom;
       }
 
       showTime(hoursFrom, hoursTo);
     }
 
-    function onMouseUp (upEvt) {
+    function onMouseUp(upEvt) {
       upEvt.preventDefault();
 
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
     }
 
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   });
 
-  document.addEventListener("keydown", function (evt) {
+  document.addEventListener('keydown', function (evt) {
     if ((evt.altKey) && (evt.shiftKey) && (evt.keyCode === 37)) {
       showSlider(parseFloat(sliderStyle.left) - inputWidth / 36);
 
@@ -60,7 +60,7 @@
       var hoursTo = getTimeTo(hoursFrom);
 
       if (hoursFrom < 10) {
-        hoursFrom = "0" + hoursFrom;
+        hoursFrom = '0' + hoursFrom;
       }
 
       showTime(hoursFrom, hoursTo);
@@ -73,46 +73,46 @@
       hoursTo = getTimeTo(hoursFrom);
 
       if (hoursFrom < 10) {
-        hoursFrom = "0" + hoursFrom;
+        hoursFrom = '0' + hoursFrom;
       }
 
       showTime(hoursFrom, hoursTo);
     }
   });
 
-  function getTimeFrom (offsetLeft, width) {
+  function getTimeFrom(offsetLeft, width) {
     var position = Math.floor(36 * offsetLeft / width);
     var hours = Math.floor(8 + position / 4);
     var minutes = (position % 4) * 15;
 
     if (hours < 10) {
-      hours = "0" + hours;
+      hours = '0' + hours;
     }
 
     if (minutes === 0) {
-      minutes = "00";
+      minutes = '00';
     }
 
-    return hours + ":" + minutes;
+    return hours + ':' + minutes;
   }
 
-  function getTimeTo (time) {
-    var timeValue = time.split(":");
-    return parseInt(timeValue[0], 10) + 2 + ":" + timeValue[1];
+  function getTimeTo(time) {
+    var timeValue = time.split(':');
+    return parseInt(timeValue[0], 10) + 2 + ':' + timeValue[1];
   }
 
-  function showTime (valueFrom, valueTo) {
+  function showTime(valueFrom, valueTo) {
     timeFrom.value = valueFrom;
     timeTo.value = valueTo;
   }
 
-  function showSlider (coord) {
+  function showSlider(coord) {
     if (coord < 0) {
-      timeSlider.style.left = 0 + "px";
+      timeSlider.style.left = 0 + 'px';
     } else if (coord > parseInt(inputWidth, 10)) {
-      timeSlider.style.left = parseInt(inputWidth, 10) + "px";
+      timeSlider.style.left = parseInt(inputWidth, 10) + 'px';
     } else {
-      timeSlider.style.left = coord + "px";
+      timeSlider.style.left = coord + 'px';
     }
   }
 

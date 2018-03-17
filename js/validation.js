@@ -1,75 +1,75 @@
-"use strict";
+'use strict';
 
 (function () {
-  var addressPanel = document.querySelector("input#address");
-  var dateInput = document.querySelector("input#date");
-  var phonePanel = document.querySelector("input#phone");
+  var addressPanel = document.querySelector('input#address');
+  var dateInput = document.querySelector('input#date');
+  var phonePanel = document.querySelector('input#phone');
   var now = new Date();
-  var cardPanel = document.querySelector("fieldset.card");
-  var cardFields = cardPanel.querySelectorAll(".card-section");
-  var cardFieldFull = document.querySelector("#card-full");
-  var tooltips = document.querySelectorAll(".tooltip");
+  var cardPanel = document.querySelector('fieldset.card');
+  var cardFields = cardPanel.querySelectorAll('.card-section');
+  var cardFieldFull = document.querySelector('#card-full');
+  var tooltips = document.querySelectorAll('.tooltip');
 
-  function hideTooltips () {
+  function hideTooltips() {
     tooltips.forEach(function (item) {
-      if (!item.classList.contains("hidden")) {
-        item.classList.add("hidden");
+      if (!item.classList.contains('hidden')) {
+        item.classList.add('hidden');
       }
     });
   }
 
-  function showFirstTooltip () {
-    var invalidFields = document.querySelectorAll(".invalid:not(:disabled)");
+  function showFirstTooltip() {
+    var invalidFields = document.querySelectorAll('.invalid:not(:disabled)');
     if (invalidFields[0]) {
-      invalidFields[0].nextElementSibling.classList.remove("hidden");
+      invalidFields[0].nextElementSibling.classList.remove('hidden');
     }
   }
 
-  addressPanel.addEventListener("blur", function () {
+  addressPanel.addEventListener('blur', function () {
     hideTooltips();
-    if (addressPanel.value === "") {
-      if (!addressPanel.classList.contains("invalid")) {
-        addressPanel.classList.add("invalid");
+    if (addressPanel.value === '') {
+      if (!addressPanel.classList.contains('invalid')) {
+        addressPanel.classList.add('invalid');
       }
     } else {
-      addressPanel.classList.remove("invalid");
+      addressPanel.classList.remove('invalid');
     }
 
     showFirstTooltip();
     window.checkFormValidity();
   });
 
-  addressPanel.addEventListener("focus", function () {
+  addressPanel.addEventListener('focus', function () {
     hideTooltips();
   });
 
-  dateInput.value = leadZero(now.getDate()) + "/" + leadZero(now.getMonth() + 1) + "/" + now.getFullYear();
+  dateInput.value = leadZero(now.getDate()) + '/' + leadZero(now.getMonth() + 1) + '/' + now.getFullYear();
 
-  function leadZero (n) {
-    return (n < 10 ? "0" : "") + n;
+  function leadZero(n) {
+    return (n < 10 ? '0' : '') + n;
   }
 
-  $("input#date").mask("99/99/9999");
+  $('input#date').mask('99/99/9999');
 
-  dateInput.addEventListener("blur", function (evt) {
+  dateInput.addEventListener('blur', function (evt) {
     if (!evt.target.value.match(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)) {
-      evt.target.value = leadZero(now.getDate()) + "/" + leadZero(now.getMonth() + 1) + "/" + now.getFullYear();
+      evt.target.value = leadZero(now.getDate()) + '/' + leadZero(now.getMonth() + 1) + '/' + now.getFullYear();
     }
 
-    var value = evt.target.value.split("/");
+    var value = evt.target.value.split('/');
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var dateValue = new Date(value[2], value[1] - 1, value[0]);
 
-    evt.target.value = leadZero(dateValue.getDate()) + "/" + leadZero(dateValue.getMonth() + 1) + "/" + dateValue.getFullYear();
+    evt.target.value = leadZero(dateValue.getDate()) + '/' + leadZero(dateValue.getMonth() + 1) + '/' + dateValue.getFullYear();
 
     hideTooltips();
 
     if (+dateValue - +today > 7 * 24 * 3600 * 1000 || +today > +dateValue) {
-      if (!dateInput.classList.contains("invalid")) {
-        dateInput.classList.add("invalid");
+      if (!dateInput.classList.contains('invalid')) {
+        dateInput.classList.add('invalid');
       }
     } else {
-      dateInput.classList.remove("invalid");
+      dateInput.classList.remove('invalid');
     }
 
     showFirstTooltip();
@@ -78,49 +78,53 @@
 
   });
 
-  dateInput.addEventListener("focus", function () {
+  dateInput.addEventListener('focus', function () {
     hideTooltips();
   });
 
-  phonePanel.addEventListener("blur", function (evt) {
+  phonePanel.addEventListener('blur', function (evt) {
     hideTooltips();
 
-    if (phonePanel.value === "") {
-      if (!phonePanel.classList.contains("invalid")) {
-        phonePanel.classList.add("invalid");
+    if (phonePanel.value === '') {
+      if (!phonePanel.classList.contains('invalid')) {
+        phonePanel.classList.add('invalid');
       }
     } else {
-      phonePanel.classList.remove("invalid");
+      phonePanel.classList.remove('invalid');
     }
     showFirstTooltip();
 
     window.checkFormValidity();
   });
 
-  phonePanel.addEventListener("focus", function () {
+  phonePanel.addEventListener('focus', function () {
     hideTooltips();
   });
 
-  for (var i = 0; i < 3; i++) (function (i) {
-    cardFields[i].addEventListener("keyup", function (evt) {
-      if (evt.target.value.length === 4) {
-        cardFields[i + 1].focus();
-      }
-    });
-  })(i);
+  for (var i = 0; i < 3; i++) {
+    (function (i) {
+      cardFields[i].addEventListener('keyup', function (evt) {
+        if (evt.target.value.length === 4) {
+          cardFields[i + 1].focus();
+        }
+      });
+    })(i);
+  }
 
-  for (var i = 1; i < 4; i++) (function (i) {
-    cardFields[i].addEventListener("keydown", function (evt) {
-      if (evt.keyCode === 8 && cardFields[i].value.length === 0) {
-        evt.preventDefault();
-        cardFields[i - 1].value = cardFields[i - 1].value.slice(0, -1);
-        cardFields[i - 1].focus();
-      }
-    });
-  })(i);
+  for (var i = 1; i < 4; i++) {
+    (function (i) {
+      cardFields[i].addEventListener('keydown', function (evt) {
+        if (evt.keyCode === 8 && cardFields[i].value.length === 0) {
+          evt.preventDefault();
+          cardFields[i - 1].value = cardFields[i - 1].value.slice(0, -1);
+          cardFields[i - 1].focus();
+        }
+      });
+    })(i);
+  }
 
-  cardPanel.addEventListener("keyup", function (evt) {
-    cardFieldFull.value = "";
+  cardPanel.addEventListener('keyup', function (evt) {
+    cardFieldFull.value = '';
 
     for (var i = 0; i <= 3; i++) {
       if (cardFields[i].value.length < 4) {
@@ -133,48 +137,50 @@
     if (cardFieldFull.value.length === 16) {
       if (checkCard(cardFieldFull.value)) {
         for (var i = 0; i <= 3; i++) {
-          cardFields[i].classList.remove("invalid");
+          cardFields[i].classList.remove('invalid');
         }
-        cardFieldFull.classList.remove("invalid");
+        cardFieldFull.classList.remove('invalid');
       } else {
         for (var i = 0; i <= 3; i++) {
-          if (!cardFields[i].classList.contains("invalid")) {
-            cardFields[i].classList.add("invalid");
+          if (!cardFields[i].classList.contains('invalid')) {
+            cardFields[i].classList.add('invalid');
           }
         }
-        if (!cardFieldFull.classList.contains("invalid")) {
-          cardFieldFull.classList.add("invalid");
+        if (!cardFieldFull.classList.contains('invalid')) {
+          cardFieldFull.classList.add('invalid');
         }
       }
     } else {
       for (var i = 0; i <= 3; i++) {
-        if (!cardFields[i].classList.contains("invalid")) {
-          cardFields[i].classList.add("invalid");
+        if (!cardFields[i].classList.contains('invalid')) {
+          cardFields[i].classList.add('invalid');
         }
       }
-      if (!cardFieldFull.classList.contains("invalid")) {
-        cardFieldFull.classList.add("invalid");
+      if (!cardFieldFull.classList.contains('invalid')) {
+        cardFieldFull.classList.add('invalid');
       }
     }
     window.checkFormValidity();
 
   });
 
-  cardFields[3].addEventListener("blur", function () {
+  cardFields[3].addEventListener('blur', function () {
     hideTooltips();
 
-    if (cardFieldFull.classList.contains("invalid")) {
+    if (cardFieldFull.classList.contains('invalid')) {
       showFirstTooltip();
     }
   });
 
-  for (var i = 0; i <= 3; i++) (function (i) {
-    cardFields[i].addEventListener("focus", function (evt) {
-      hideTooltips();
-    });
-  })(i);
+  for (var i = 0; i <= 3; i++) {
+    (function (i) {
+      cardFields[i].addEventListener('focus', function (evt) {
+        hideTooltips();
+      });
+    })(i);
+  }
 
-  function checkCard (cardNumber) {
+  function checkCard(cardNumber) {
     if (!cardNumber.match(/\d{16}/)) {
       return false;
     }
@@ -189,9 +195,9 @@
           arr.push(m);
         }
       } else {
-          var n = parseInt(cardNumber[i], 10);
-          arr.push(n);
-        }
+        var n = parseInt(cardNumber[i], 10);
+        arr.push(n);
+      }
     }
     var summ = arr.reduce(function (a, b) {
       return a + b;
