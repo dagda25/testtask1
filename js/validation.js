@@ -49,7 +49,9 @@
     return (n < 10 ? '0' : '') + n;
   }
 
+/* eslint-disable */
   $('input#date').mask('99/99/9999');
+  /* eslint-enable */
 
   dateInput.addEventListener('blur', function (evt) {
     if (!evt.target.value.match(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)) {

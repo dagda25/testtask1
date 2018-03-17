@@ -95,7 +95,8 @@
     save(data, onUpload, onError);
     submit.disabled = true;
   });
-/* eslint-enable */
+  /* eslint-enable */
+
   function setup(onSuccess, onFailure) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
