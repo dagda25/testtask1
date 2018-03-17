@@ -101,15 +101,15 @@
     hideTooltips();
   });
 
-  for (let i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) (function (i) {
     cardFields[i].addEventListener("keyup", function (evt) {
       if (evt.target.value.length === 4) {
         cardFields[i + 1].focus();
       }
     });
-  }
+  })(i);
 
-  for (let i = 1; i < 4; i++) {
+  for (var i = 1; i < 4; i++) (function (i) {
     cardFields[i].addEventListener("keydown", function (evt) {
       if (evt.keyCode === 8 && cardFields[i].value.length === 0) {
         evt.preventDefault();
@@ -117,12 +117,12 @@
         cardFields[i - 1].focus();
       }
     });
-  }
+  })(i);
 
   cardPanel.addEventListener("keyup", function (evt) {
     cardFieldFull.value = "";
 
-    for (let i = 0; i <= 3; i++) {
+    for (var i = 0; i <= 3; i++) {
       if (cardFields[i].value.length < 4) {
         break;
       } else {
@@ -132,12 +132,12 @@
 
     if (cardFieldFull.value.length === 16) {
       if (checkCard(cardFieldFull.value)) {
-        for (let i = 0; i <= 3; i++) {
+        for (var i = 0; i <= 3; i++) {
           cardFields[i].classList.remove("invalid");
         }
         cardFieldFull.classList.remove("invalid");
       } else {
-        for (let i = 0; i <= 3; i++) {
+        for (var i = 0; i <= 3; i++) {
           if (!cardFields[i].classList.contains("invalid")) {
             cardFields[i].classList.add("invalid");
           }
@@ -147,7 +147,7 @@
         }
       }
     } else {
-      for (let i = 0; i <= 3; i++) {
+      for (var i = 0; i <= 3; i++) {
         if (!cardFields[i].classList.contains("invalid")) {
           cardFields[i].classList.add("invalid");
         }
@@ -168,13 +168,17 @@
     }
   });
 
-  for (let i = 0; i <= 3; i++) {
+  for (var i = 0; i <= 3; i++) (function (i) {
     cardFields[i].addEventListener("focus", function (evt) {
       hideTooltips();
     });
-  }
+  })(i);
 
   function checkCard (cardNumber) {
+    if (!cardNumber.match(/\d{16}/)) {
+      return false;
+    }
+
     var arr = [];
     for (var i = 0; i < cardNumber.length; i++) {
       if (i % 2 === 0) {

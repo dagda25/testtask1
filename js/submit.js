@@ -62,7 +62,7 @@
       });
       var invalidLabels = invalidFieldsText.querySelectorAll("label");
       var divider = document.createTextNode(", ");
-      for (let i = 1; i < invalidLabels.length; i++) {
+      for (var i = 1; i < invalidLabels.length; i++) {
         var dividerNode = divider.cloneNode(true);
         invalidFieldsText.insertBefore(dividerNode, invalidLabels[i]);
       }
