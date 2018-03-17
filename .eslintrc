@@ -4,4 +4,7 @@ env:
   browser: true
 
 extends:
-  "htmlacademy/es6"
+  "htmlacademy/es5"
+
+options:
+  fix: true
