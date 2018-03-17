@@ -21,7 +21,6 @@
       var shift = startCoordinate - moveEvt.clientX;
 
       startCoordinate = moveEvt.clientX;
-
       sliderCoordinate -= shift;
 
       showSlider(sliderCoordinate);
