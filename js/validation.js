@@ -103,9 +103,9 @@
 
   for (var i = 0; i < 3; i++) {
     (function (x) {
-      cardFields[i].addEventListener('keyup', function (evt) {
+      cardFields[x].addEventListener('keyup', function (evt) {
         if (evt.target.value.length === 4) {
-          cardFields[i + 1].focus();
+          cardFields[x + 1].focus();
         }
       });
     })(i);
@@ -113,11 +113,11 @@
 
   for (i = 1; i < 4; i++) {
     (function (x) {
-      cardFields[i].addEventListener('keydown', function (evt) {
-        if (evt.keyCode === 8 && cardFields[i].value.length === 0) {
+      cardFields[x].addEventListener('keydown', function (evt) {
+        if (evt.keyCode === 8 && cardFields[x].value.length === 0) {
           evt.preventDefault();
-          cardFields[i - 1].value = cardFields[i - 1].value.slice(0, -1);
-          cardFields[i - 1].focus();
+          cardFields[x - 1].value = cardFields[x - 1].value.slice(0, -1);
+          cardFields[x - 1].focus();
         }
       });
     })(i);
@@ -174,7 +174,7 @@
 
   for (i = 0; i <= 3; i++) {
     (function (x) {
-      cardFields[i].addEventListener('focus', function () {
+      cardFields[x].addEventListener('focus', function () {
         hideTooltips();
       });
     })(i);
