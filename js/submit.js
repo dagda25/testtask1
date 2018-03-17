@@ -74,7 +74,7 @@
     }
   }
   window.checkFormValidity = checkFormValidity;
-
+/* eslint-disable */
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
@@ -95,7 +95,7 @@
     save(data, onUpload, onError);
     submit.disabled = true;
   });
-
+/* eslint-enable */
   function setup(onSuccess, onFailure) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
