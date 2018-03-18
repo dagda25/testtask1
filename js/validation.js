@@ -106,7 +106,7 @@
   for (var i = 0; i < 3; i++) {
     (function (x) {
       cardFields[x].addEventListener('keyup', function (evt) {
-        if (evt.target.value.length === 4) {
+        if (evt.target.value.length === 4 && evt.keyCode !== 9 && evt.keyCode !== 16) {
           cardFields[x + 1].focus();
         }
       });

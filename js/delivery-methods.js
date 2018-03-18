@@ -86,6 +86,18 @@
       dateInput.disabled = true;
       timeFrom.disabled = true;
       timeTo.disabled = true;
+      pickupPointFirst.disabled = false;
+      pickupPointSecond.disabled = false;
+      pickupPointThird.disabled = false;
+      pickupPointFourth.disabled = false;
+      paymentCard.disabled = true;
+      paymentCash.disabled = true;
+      cardFirstField.disabled = true;
+      cardSecondField.disabled = true;
+      cardThirdField.disabled = true;
+      cardFourthField.disabled = true;
+      cardFull.disabled = true;
+      window.checkFormValidity();
     }
   });
 
@@ -100,6 +112,18 @@
       dateInput.disabled = false;
       timeFrom.disabled = false;
       timeTo.disabled = false;
+      pickupPointFirst.disabled = true;
+      pickupPointSecond.disabled = true;
+      pickupPointThird.disabled = true;
+      pickupPointFourth.disabled = true;
+      paymentCard.disabled = false;
+      paymentCash.disabled = false;
+      cardFirstField.disabled = false;
+      cardSecondField.disabled = false;
+      cardThirdField.disabled = false;
+      cardFourthField.disabled = false;
+      cardFull.disabled = false;
+      window.checkFormValidity();
     }
   });
 

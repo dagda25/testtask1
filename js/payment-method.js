@@ -36,7 +36,12 @@
     if (evt.keyCode === 13) {
       cardLabel.previousElementSibling.checked = true;
       cardPanel.classList.remove('hidden');
-      cardFieldFull.disabled = true;
+      cardFieldFull.disabled = false;
+      cardFirstField.disabled = false;
+      cardSecondField.disabled = false;
+      cardThirdField.disabled = false;
+      cardFourthField.disabled = false;
+      window.checkFormValidity();
     }
   });
 
@@ -44,7 +49,12 @@
     if (evt.keyCode === 13) {
       cashLabel.previousElementSibling.checked = true;
       cardPanel.classList.add('hidden');
-      cardFieldFull.disabled = false;
+      cardFieldFull.disabled = true;
+      cardFirstField.disabled = true;
+      cardSecondField.disabled = true;
+      cardThirdField.disabled = true;
+      cardFourthField.disabled = true;
+      window.checkFormValidity();
     }
   });
 
